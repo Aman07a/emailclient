@@ -1,16 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { AsyncValidator, AbstractControl } from '@angular/forms';
+import { AbstractControl, AsyncValidator } from '@angular/forms';
+import { map, catchError } from 'rxjs/operators';
 
-@Injectable({ providedIn: 'root' })
+@Injectable({
+  providedIn: 'root',
+})
 export class UniqueUsername implements AsyncValidator {
   constructor(private http: HttpClient) {}
 
-  validate(control: AbstractControl): any {
+  validate = (control: AbstractControl) => {
     const { value } = control;
 
     return this.http.post<any>('https://api.angular-email.com/auth/username', {
       username: value,
     });
-  }
+  };
 }
