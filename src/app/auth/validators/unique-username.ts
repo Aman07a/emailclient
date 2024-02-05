@@ -9,8 +9,8 @@ export class UniqueUsername implements AsyncValidator {
   validate(control: AbstractControl): any {
     const { value } = control;
 
-    console.log(this.http);
-
-    return null;
+    return this.http.post<any>('https://api.angular-email.com/auth/username', {
+      username: value,
+    });
   }
 }
