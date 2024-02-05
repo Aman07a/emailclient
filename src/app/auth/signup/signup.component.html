@@ -5,20 +5,21 @@
     <input formControlName="username" />
   </div> -->
 
-  <app-input label="Username" [control]="authForm.get('username')"></app-input>
-  {{ authForm.get("username")?.errors | json }}
-
-  <div class="field">
-    <label>Password</label>
-    <input formControlName="password" />
-  </div>
-  {{ authForm.get("password")?.errors | json }}
-
-  <div class="field">
-    <label>Password Confirmation</label>
-    <input formControlName="passwordConfirmation" />
-  </div>
-  {{ authForm.get("passwordConfirmation")?.errors | json }}
+  <app-input
+    inputType="text"
+    label="Username"
+    [control]="authForm.get('username')"
+  ></app-input>
+  <app-input
+    inputType="password"
+    label="Password"
+    [control]="authForm.get('password')"
+  ></app-input>
+  <app-input
+    inputType="password"
+    label="Password Confirmation"
+    [control]="authForm.get('passwordConfirmation')"
+  ></app-input>
 
   <button class="ui submit button primary">Submit</button>
 
