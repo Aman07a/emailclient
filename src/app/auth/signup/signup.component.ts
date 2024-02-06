@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 
 import { MatchPassword } from '../validators/match-password';
 import { UniqueUsername } from '../validators/unique-username';
-import { AuthService } from '../auth.service';
+import { AuthService, SignupCredentials } from '../auth.service';
 
 @Component({
   selector: 'app-signup',
@@ -50,8 +50,20 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    this.authService.signup(this.authForm.value).subscribe((response) => {
-      console.log(response);
+    const { username, password, passwordConfirmation } = this.authForm.value;
+
+    if (!username || !password || !passwordConfirmation) {
+      return;
+    }
+
+    const credentials: SignupCredentials = {
+      username,
+      password,
+      passwordConfirmation,
+    };
+
+    this.authService.signup(credentials).subscribe((response) => {
+      console.log(response.username);
     });
   }
 }
