@@ -20,8 +20,8 @@ export class SignupComponent implements OnInit {
           Validators.minLength(3),
           Validators.maxLength(20),
           Validators.pattern(/^[a-z0-9]+$/),
-        ],
-        [this.uniqueUsername.validate]
+        ]
+        // [this.uniqueUsername.validate]
       ),
       password: new FormControl('', [
         Validators.required,
@@ -50,27 +50,19 @@ export class SignupComponent implements OnInit {
       return;
     }
 
-    const { username, password, passwordConfirmation } = this.authForm.value;
-
-    if (!username || !password || !passwordConfirmation) {
-      return;
-    }
-
-    const credentials: SignupCredentials = {
-      username,
-      password,
-      passwordConfirmation,
-    };
-
-    this.authService.signup(credentials).subscribe({
-      next: (response) => {
-        // Navigate to some other route
-      },
-      error: (err) => {
-        if (!err.status) {
-          this.authForm.setErrors({ noConnection: true });
-        }
-      },
-    });
+    this.authService
+      .signup(this.authForm.value as SignupCredentials)
+      .subscribe({
+        next: (response) => {
+          // Navigate to some other route
+        },
+        error: (err) => {
+          if (!err.status) {
+            this.authForm.setErrors({ noConnection: true });
+          } else {
+            this.authForm.setErrors({ noConnection: true });
+          }
+        },
+      });
   }
 }

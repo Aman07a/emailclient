@@ -11,7 +11,7 @@ export interface SignupCredentials {
   passwordConfirmation: string;
 }
 
-export interface SignupResponse {
+interface SignupResponse {
   username: string;
 }
 
