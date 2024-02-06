@@ -27,9 +27,9 @@
       authForm.get('passwordConfirmation')?.touched &&
       authForm.errors
     "
-    class="ui pointing label red basic"
+    class="ui label red basic"
   >
-    <p *ngIf="authForm.errors['passwordDontMatch']">
+    <p *ngIf="authForm.errors['passwordsDontMatch']">
       Password and Password Confirmation must match
     </p>
   </div>
