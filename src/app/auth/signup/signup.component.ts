@@ -62,8 +62,15 @@ export class SignupComponent implements OnInit {
       passwordConfirmation,
     };
 
-    this.authService.signup(credentials).subscribe((response) => {
-      console.log(response.username);
+    this.authService.signup(credentials).subscribe({
+      next: (response) => {
+        // Navigate to some other route
+      },
+      error: (err) => {
+        if (!err.status) {
+          this.authForm.setErrors({ noConnection: true });
+        }
+      },
     });
   }
 }
