@@ -34,6 +34,13 @@ export class SigninComponent implements OnInit {
 
     const formValue = this.authForm.value as SigninCredentials;
 
-    this.authService.signin(formValue).subscribe(() => {});
+    this.authService.signin(formValue).subscribe({
+      next: () => {},
+      error: ({ error }) => {
+        if (error.username || error.password) {
+          this.authForm.setErrors({ credentials: true });
+        }
+      },
+    });
   }
 }
