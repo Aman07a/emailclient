@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 
+import { AuthService, SigninCredentials } from '../auth.service';
+
 @Component({
   selector: 'app-signin',
   templateUrl: './signin.component.html',
@@ -21,7 +23,17 @@ export class SigninComponent implements OnInit {
     ]),
   });
 
-  constructor() {}
+  constructor(private authService: AuthService) {}
 
   ngOnInit() {}
+
+  onSubmit() {
+    if (this.authForm.invalid) {
+      return;
+    }
+
+    const formValue = this.authForm.value as SigninCredentials;
+
+    this.authService.signin(formValue).subscribe(() => {});
+  }
 }
