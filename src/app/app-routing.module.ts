@@ -1,9 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { authGuard } from './auth/auth.guard';
 
 const routes: Routes = [
   {
     path: 'inbox',
+    canActivate: [authGuard],
     loadChildren: () =>
       import('./inbox/inbox.module').then((mod) => mod.InboxModule),
   },
