@@ -13,16 +13,12 @@ import { AuthService, SignupCredentials } from '../auth.service';
 export class SignupComponent implements OnInit {
   authForm = new FormGroup(
     {
-      username: new FormControl(
-        '',
-        [
-          Validators.required,
-          Validators.minLength(3),
-          Validators.maxLength(20),
-          Validators.pattern(/^[a-z0-9]+$/),
-        ]
-        // [this.uniqueUsername.validate]
-      ),
+      username: new FormControl('', [
+        Validators.required,
+        Validators.minLength(3),
+        Validators.maxLength(20),
+        Validators.pattern(/^[a-z0-9]+$/),
+      ]),
       password: new FormControl('', [
         Validators.required,
         Validators.minLength(4),
@@ -41,7 +37,11 @@ export class SignupComponent implements OnInit {
     private matchPassword: MatchPassword,
     private uniqueUsername: UniqueUsername,
     private authService: AuthService
-  ) {}
+  ) {
+    this.authForm
+      .get('username')
+      ?.setAsyncValidators(this.uniqueUsername.validate);
+  }
 
   ngOnInit() {}
 
