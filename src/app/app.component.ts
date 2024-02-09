@@ -9,7 +9,7 @@ import { BehaviorSubject } from 'rxjs';
 })
 export class AppComponent implements OnInit {
   title = 'emailclient';
-  signedin$: BehaviorSubject<boolean>;
+  signedin$: BehaviorSubject<boolean | null>;
 
   constructor(private authService: AuthService) {
     this.signedin$ = this.authService.signedin$;

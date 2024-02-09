@@ -1,6 +1,12 @@
-import { CanActivateFn } from '@angular/router';
+import { CanMatchFn } from '@angular/router';
+import { AuthService } from './auth.service';
+import { take, skipWhile, map } from 'rxjs';
+import { inject } from '@angular/core';
 
-export const authGuard: CanActivateFn = (route, state) => {
-  const isAuthenticated = true;
-  return isAuthenticated;
+export const authGuard: CanMatchFn = (route, segments) => {
+  return inject(AuthService).signedin$.pipe(
+    skipWhile((value) => value === null),
+    map((value) => !!value),
+    take(1)
+  );
 };
