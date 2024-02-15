@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmailShowComponent } from './email-show/email-show.component';
 import { HomeComponent } from './home/home.component';
 import { PlaceholderComponent } from './placeholder/placeholder.component';
-import { emailResolverService as EmailResolverService } from './email-resolver.service';
+import { EmailResolverService } from './email-resolver.service';
 
 const routes: Routes = [
   {
