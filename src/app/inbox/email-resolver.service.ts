@@ -3,6 +3,13 @@ import { Observable } from 'rxjs';
 
 import { Email } from './email';
 
-const emailResolverService: ResolveFn<any> = () => {
-  return undefined;
+export const emailResolverService: ResolveFn<Email | any> = () => {
+  return {
+    id: 'dsfgdsf',
+    subject: 'dsfgdsf',
+    text: 'dsfgdsf',
+    to: 'dsfgdsf',
+    from: 'dsfgdsf',
+    html: 'dsfgdsf',
+  };
 };
