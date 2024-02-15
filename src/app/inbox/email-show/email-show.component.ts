@@ -10,8 +10,12 @@ export class EmailShowComponent implements OnInit {
   constructor(private route: ActivatedRoute) {}
 
   ngOnInit() {
-    this.route.params.subscribe(({ id }) => {
-      // console.log(id);
-    });
+    console.log(this.route);
+
+    // this.route.params.subscribe((value) => {
+    //   console.log(value);
+    // });
+
+    console.log(this.route.snapshot.params['id']);
   }
 }
