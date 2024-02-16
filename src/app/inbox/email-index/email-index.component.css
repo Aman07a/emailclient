@@ -13,3 +13,10 @@ a.active:before {
   font-size: 20px;
   margin-right: 10px;
 }
+
+.trim {
+  overflow: hidden;
+  white-space: normal;
+  text-overflow: ellipsis;
+  width: 100%;
+}
