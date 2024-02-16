@@ -20,6 +20,6 @@ export class AppComponent implements OnInit {
 
     setTimeout(() => {
       this.authService.signout().subscribe(() => {});
-    }, 5000);
+    }, 100000);
   }
 }
