@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { AuthService } from 'src/app/auth/auth.service';
 
+import { AuthService } from '../../auth/auth.service';
 import { Email } from '../email';
 
 @Component({
@@ -24,4 +24,6 @@ export class EmailCreateComponent implements OnInit {
   }
 
   ngOnInit() {}
+
+  onSubmit(email: Email) {}
 }
