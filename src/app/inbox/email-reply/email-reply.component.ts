@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+
 import { Email } from '../email';
 
 @Component({
@@ -8,11 +9,21 @@ import { Email } from '../email';
 })
 export class EmailReplyComponent implements OnInit {
   showModal = false;
-  email: Email | any;
+  @Input() email: Email | any;
 
   constructor() {}
 
-  ngOnInit() {}
+  ngOnInit() {
+    const text = this.email.text.replace(/\n/gi, '\n> ');
+
+    this.email = {
+      ...this.email,
+      from: this.email.to,
+      to: this.email.from,
+      subject: `RE: ${this.email.subject}`,
+      text: `\n\n\n-------- ${this.email.from} wrote:\n> ${text}`,
+    };
+  }
 
   onSubmit(email: Email) {}
 }
